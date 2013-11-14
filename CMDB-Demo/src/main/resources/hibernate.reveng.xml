@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table catalog="rst" name="ajx_carte_menu" class="CarteMenu">
+		<column name="id"></column>
+		<column name="cooking_style_id"></column>
+		<column name="carte_code"></column>
+		<column name="carte_name"></column>
+		<column name="price"></column>
+		<column name="description"></column>
+		<column name="normal_image_url"></column>
+		<column name="mini_image_url"></column>
+		<column name="is_recommend"></column>
+		<column name="recommend_no"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_area" class="Area">
+		<column name="id"></column>
+		<column name="area_name"></column>
+		<column name="area_type"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_user" class="User">
+		<column name="id"></column>
+		<column name="username"></column>
+		<column name="password"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_order_table" class="OrderTable">
+		<column name="id"></column>
+		<column name="order_id"></column>
+		<column name="table_id"></column>
+		<column name="description"></column>
+	</table>
+	<table catalog="rst" name="ajx_order_carte"
+		class="OrderCarte">
+		<column name="id"></column>
+		<column name="order_id"></column>
+		<column name="carte_id"></column>
+		<column name="description"></column>
+	</table>
+	<table catalog="rst" name="ajx_role_permission"
+		class="RolePermission">
+		<column name="id"></column>
+		<column name="role_id"></column>
+		<column name="facter_id"></column>
+	</table>
+	<table catalog="rst" name="ajx_role" class="Role">
+		<column name="id"></column>
+		<column name="role_name"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_permission" class="Permission">
+		<column name="id"></column>
+		<column name="facter_id"></column>
+		<column name="action_type"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_comment" class="Comment">
+		<column name="id"></column>
+		<column name="customer_id"></column>
+		<column name="comment_type"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_facter" class="Facter">
+		<column name="id"></column>
+		<column name="facter_name"></column>
+		<column name="facter_value"></column>
+	</table>
+	<table catalog="rst" name="ajx_order_area" class="OrderArea">
+		<column name="id"></column>
+		<column name="order_id"></column>
+		<column name="area_id"></column>
+		<column name="description"></column>
+	</table>
+	<table catalog="rst" name="ajx_cooking_style"
+		class="CookingStyle">
+		<column name="id"></column>
+		<column name="style_code"></column>
+		<column name="style_name"></column>
+		<column name="carte_number"></column>
+		<column name="description"></column>
+		<column name="normal_image_url"></column>
+		<column name="mini_image_url"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_customer" class="Customer">
+		<column name="id"></column>
+		<column name="name"></column>
+		<column name="password"></column>
+		<column name="tel_no"></column>
+		<column name="customer_type"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_dining_table" class="DiningTable">
+		<column name="id"></column>
+		<column name="area_id"></column>
+		<column name="dining_table_no"></column>
+		<column name="description"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_menu" class="Menu">
+		<column name="id"></column>
+		<column name="name"></column>
+		<column name="parent_id"></column>
+		<column name="permission_id"></column>
+		<column name="url"></column>
+	</table>
+	<table catalog="rst" name="ajx_weather" class="Weather">
+		<column name="id"></column>
+		<column name="weather_date"></column>
+		<column name="weather_type"></column>
+		<column name="temperature"></column>
+		<column name="warm_tips"></column>
+		<column name="description"></column>
+	</table>
+	<table catalog="rst" name="ajx_action" class="Action">
+		<column name="id"></column>
+		<column name="menu_id"></column>
+		<column name="permission_id"></column>
+		<column name="name"></column>
+		<column name="action_code"></column>
+	</table>
+	<table catalog="rst" name="ajx_order" class="Order">
+		<column name="id"></column>
+		<column name="order_type"></column>
+		<column name="order_no"></column>
+		<column name="customer_name"></column>
+		<column name="customer_number"></column>
+		<column name="tel_no"></column>
+		<column name="description"></column>
+		<column name="booking_type"></column>
+		<column name="bookingtime_start"></column>
+		<column name="bookingtime_end"></column>
+		<column name="order_status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_aboutus" class="Aboutus">
+		<column name="id"></column>
+		<column name="title"></column>
+		<column name="content"></column>
+		<column name="address"></column>
+		<column name="tel_no"></column>
+		<column name="description"></column>
+		<column name="normal_image_url"></column>
+		<column name="mini_image_url"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_hotnews" class="Hotnews">
+		<column name="id"></column>
+		<column name="title"></column>
+		<column name="content"></column>
+		<column name="description"></column>
+		<column name="starttime"></column>
+		<column name="endtime"></column>
+		<column name="normal_image_url"></column>
+		<column name="mini_image_url"></column>
+		<column name="status"></column>
+		<column name="createby"></column>
+		<column name="createtime"></column>
+		<column name="updateby"></column>
+		<column name="updatetime"></column>
+	</table>
+	<table catalog="rst" name="ajx_user_role" class="UserRole">
+		<column name="id"></column>
+		<column name="user_id"></column>
+		<column name="role_id"></column>
+	</table>
+</hibernate-reverse-engineering>
