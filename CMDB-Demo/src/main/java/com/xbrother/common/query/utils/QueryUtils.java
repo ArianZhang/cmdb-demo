@@ -5,8 +5,7 @@ package com.xbrother.common.query.utils;
 
 import java.util.List;
 
-import com.xbrother.common.dto.SuperDTO;
-import com.xbrother.common.entity.IdEntity;
+import com.xbrother.common.entity.UUIDEntity;
 import com.xbrother.common.query.Condition;
 import com.xbrother.common.query.OrderBy;
 import com.xbrother.common.utils.CollectionUtils;
@@ -22,7 +21,7 @@ public class QueryUtils {
 
 	public static final String ALIAS = " entity";
 
-	public static <T extends IdEntity> String dynamicWhereSql(List<Condition> conditions, Class<T> classOfEntity) {
+	public static <T extends UUIDEntity> String dynamicWhereSql(List<Condition> conditions, Class<T> classOfEntity) {
 		StringBuilder sql = new StringBuilder(" from ");
 		sql.append(classOfEntity.getName()).append(ALIAS);
 		if (conditions != null) {

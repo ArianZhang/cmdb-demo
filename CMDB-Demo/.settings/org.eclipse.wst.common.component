@@ -4,8 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <property name="context-root" value="CMDB-Demo"/>
         <property name="java-output-path" value="/CMDB-Demo/target/classes"/>
+        <property name="context-root" value="cmdb-web"/>
     </wb-module>
 </project-modules>

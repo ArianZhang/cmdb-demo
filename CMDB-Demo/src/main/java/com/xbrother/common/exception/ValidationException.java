@@ -6,8 +6,6 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 
-import com.xbrother.common.dto.SuperDTO;
-
 /**
  * An exception to hold the Set of ContstraintViolations and translate to a
  * message.
@@ -17,7 +15,7 @@ public class ValidationException extends RuntimeException {
 
 	private Map<String, String> validationMessage = new HashMap<String, String>();
 
-	public <T extends SuperDTO> ValidationException(Set<ConstraintViolation<T>> violations) {
+	public <T> ValidationException(Set<ConstraintViolation<T>> violations) {
 		parseViolations(violations);
 	}
 
@@ -26,7 +24,7 @@ public class ValidationException extends RuntimeException {
 	}
 
 	// This is not a good translation. Needs work.
-	private <T extends SuperDTO> void parseViolations(Set<ConstraintViolation<T>> violations) {
+	private <T> void parseViolations(Set<ConstraintViolation<T>> violations) {
 		for (ConstraintViolation<T> violation : violations) {
 			validationMessage.put(violation.getPropertyPath().toString(),
 					violation.getInvalidValue() + ":" + violation.getMessage());

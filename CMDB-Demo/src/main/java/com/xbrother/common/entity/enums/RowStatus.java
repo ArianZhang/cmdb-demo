@@ -9,14 +9,14 @@ import com.xbrother.common.utils.LocaleUtils;
  * 
  * @author Arian Zhang
  * @email arian_zhang@foxmail.com
- * @date 2013年9月23日
+ * @date 2013-7-28
  * @version 1.0
  */
-public enum UpdateLevel implements DisplayValueSupport {
-	necessary("1"), optional("0"), ;
+public enum RowStatus implements DisplayValueSupport{
+	valid("1"), invalid("-1"), ;
 	public final String value;
 
-	UpdateLevel(String value) {
+	RowStatus(String value) {
 		this.value = value;
 	}
 
@@ -28,5 +28,4 @@ public enum UpdateLevel implements DisplayValueSupport {
 	public String value() {
 		return this.value;
 	}
-
 }

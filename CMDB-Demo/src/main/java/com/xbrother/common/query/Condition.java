@@ -3,7 +3,6 @@
  */
 package com.xbrother.common.query;
 
-import com.xbrother.common.entity.enums.Status;
 
 /**
  * 
@@ -16,7 +15,7 @@ public class Condition {
 
 	public final static Condition HIDDEN_SUPER = new Condition("id", ">=", "1");
 
-	public final static Condition VALID_STATUS = new Condition("status", "=", Status.valid.value());
+	public final static Condition VALID_STATUS = new Condition("status", "=", "1");
 
 	String name;
 	String symbol;

@@ -11,7 +11,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.xbrother.common.hibernate.interceptor.DataObjectInterceptor;
 import com.xbrother.common.utils.PropertiesUtils;
 
 @Configuration
@@ -19,8 +18,8 @@ public class DataSourceConfig {
 
 	@Bean
 	public DataSource dataSource(Environment environment) throws Exception {
-
-		return new ComboPooledDataSource();
+		ComboPooledDataSource dataSource  = new ComboPooledDataSource();
+		return dataSource;
 
 		// return new EmbeddedDatabaseBuilder()
 		// .setName("crm")
@@ -53,7 +52,7 @@ public class DataSourceConfig {
 		Properties props = new Properties();
 		props.putAll(hibernateProperties());
 		sessionFactory.setHibernateProperties(props);
-		sessionFactory.setEntityInterceptor(new DataObjectInterceptor());
+		//sessionFactory.setEntityInterceptor(new DataObjectInterceptor());
 		return sessionFactory;
 	}
 

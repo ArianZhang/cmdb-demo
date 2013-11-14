@@ -10,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-import com.xbrother.common.context.CurrentContext;
-
 public class LocaleUtils {
 
 	private final static Logger LOG = LoggerFactory.getLogger(LocaleUtils.class);
@@ -83,7 +81,7 @@ public class LocaleUtils {
 	}
 
 	private static String getResourcePropertyInUTF8(String path, String key) {
-		Locale locale = CurrentContext.getLocale();
+		Locale locale = Locale.CHINA;
 		PropertyResourceBundle bundle = getResourceBoundle(path, locale);
 		String result = key;
 		if (bundle != null) {

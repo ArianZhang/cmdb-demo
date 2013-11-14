@@ -13,7 +13,7 @@ import org.hibernate.proxy.HibernateProxy;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateOperations;
 
-import com.xbrother.common.entity.IdEntity;
+import com.xbrother.common.entity.UUIDEntity;
 
 /**
  * @author qhcui
@@ -22,15 +22,15 @@ import com.xbrother.common.entity.IdEntity;
 public interface IBaseDao {
 
 	/** Methods from {@link HibernateOperations} */
-	<T extends IdEntity> T get(Class<T> entityClass, Serializable id) throws DataAccessException;
+	<T extends UUIDEntity> T get(Class<T> entityClass, Serializable id) throws DataAccessException;
 
-	<T extends IdEntity> T load(Class<T> entityClass, Serializable id) throws DataAccessException;
+	<T extends UUIDEntity> T load(Class<T> entityClass, Serializable id) throws DataAccessException;
 
-	<T extends IdEntity> List<T> loadAll(Class<T> entityClass) throws DataAccessException;
+	<T extends UUIDEntity> List<T> loadAll(Class<T> entityClass) throws DataAccessException;
 
-	<T extends IdEntity> T saveOrUpdate(T entity) throws DataAccessException;
+	<T extends UUIDEntity> T saveOrUpdate(T entity) throws DataAccessException;
 
-	// <T extends IdEntity> T update(T entity) throws DataAccessException;
+	// <T extends UUIDEntity> T update(T entity) throws DataAccessException;
 
 	// void merge(Object entity) throws DataAccessException;
 
@@ -42,7 +42,7 @@ public interface IBaseDao {
 	void deleteAll(Collection entities) throws DataAccessException;
 
 	/** End of methods from {@link HibernateOperations} */
-	public <T extends IdEntity> List<T> getAll(Class<T> c);
+	public <T extends UUIDEntity> List<T> getAll(Class<T> c);
 
 	/**
 	 * Is this a new transient instance? Returns true if the object is new
@@ -62,7 +62,7 @@ public interface IBaseDao {
 	 * @throws NonUniqueResultException
 	 *             if the number of results are more than one
 	 */
-	public <T extends IdEntity> T findUnique(String queryString) throws NonUniqueResultException;
+	public <T extends UUIDEntity> T findUnique(String queryString) throws NonUniqueResultException;
 
 	/**
 	 * 
@@ -71,7 +71,7 @@ public interface IBaseDao {
 	 * @return
 	 * @throws NonUniqueResultException
 	 */
-	public <T extends IdEntity> T findUnique(String queryString, Object... values) throws NonUniqueResultException;
+	public <T extends UUIDEntity> T findUnique(String queryString, Object... values) throws NonUniqueResultException;
 
 	/**
 	 * 
@@ -90,7 +90,7 @@ public interface IBaseDao {
 	 * @param values
 	 * @return
 	 */
-	public <T extends IdEntity> List<T> find(String queryString, Object... values) throws DataAccessException;
+	public <T extends UUIDEntity> List<T> find(String queryString, Object... values) throws DataAccessException;
 
 	/**
 	 * 
@@ -108,7 +108,7 @@ public interface IBaseDao {
 	 * @param queryString
 	 * @return
 	 */
-	public <T extends IdEntity> List<T> find(String queryString);
+	public <T extends UUIDEntity> List<T> find(String queryString);
 
 	/**
 	 * Triggers paginated query
@@ -119,7 +119,7 @@ public interface IBaseDao {
 	 * @return
 	 * @throws DataAccessException
 	 */
-	public <T extends IdEntity> List<T> find(String queryString, int firstResult, int maxResults)
+	public <T extends UUIDEntity> List<T> find(String queryString, int firstResult, int maxResults)
 			throws DataAccessException;
 
 	/**

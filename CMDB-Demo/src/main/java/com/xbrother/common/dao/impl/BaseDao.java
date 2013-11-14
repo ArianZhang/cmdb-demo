@@ -24,7 +24,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.xbrother.common.dao.IBaseDao;
-import com.xbrother.common.entity.IdEntity;
+import com.xbrother.common.entity.UUIDEntity;
+import com.xbrother.common.utils.GUIDUtils;
 import com.xbrother.common.utils.ReflectUtils;
 
 /**
@@ -41,30 +42,30 @@ public class BaseDao implements IBaseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> T get(Class<T> entityClass, Serializable id) throws DataAccessException {
+	public <T extends UUIDEntity> T get(Class<T> entityClass, Serializable id) throws DataAccessException {
 		return (T) getSession().get(entityClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> T load(Class<T> entityClass, Serializable id) throws DataAccessException {
+	public <T extends UUIDEntity> T load(Class<T> entityClass, Serializable id) throws DataAccessException {
 		return (T) getSession().load(entityClass, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> List<T> loadAll(Class<T> entityClass) throws DataAccessException {
+	public <T extends UUIDEntity> List<T> loadAll(Class<T> entityClass) throws DataAccessException {
 		return getSession().createCriteria(entityClass).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> T saveOrUpdate(T entity) throws DataAccessException {
-		if(entity.getId() == null){
-			Serializable id = getSession().save(entity);
-			entity.setId((Integer) id);
+	public <T extends UUIDEntity> T saveOrUpdate(T entity) throws DataAccessException {
+		if(entity.getUid() == null){
+			entity.setUid(GUIDUtils.generate());
+			getSession().save(entity);
 		}else{
-			T originEntity = (T) getSession().get(entity.getClass(), entity.getId());
+			T originEntity = (T) getSession().get(entity.getClass(), entity.getUid());
 			ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
 			getSession().update(originEntity);
 		}
@@ -87,7 +88,7 @@ public class BaseDao implements IBaseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> T findUnique(String queryString) throws NonUniqueResultException {
+	public <T extends UUIDEntity> T findUnique(String queryString) throws NonUniqueResultException {
 		return (T) getSession().createQuery(queryString).uniqueResult();
 	}
 
@@ -98,7 +99,7 @@ public class BaseDao implements IBaseDao {
 	 * java.lang.Object[])
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends IdEntity> T findUnique(String queryString, Object... values) throws NonUniqueResultException {
+	public <T extends UUIDEntity> T findUnique(String queryString, Object... values) throws NonUniqueResultException {
 		Query query = getSession().createQuery(queryString);
 		if (values != null) {
 			for (int i = 0; i < values.length; i++) {
@@ -127,7 +128,7 @@ public class BaseDao implements IBaseDao {
 	 */
 
 	@Override
-	public <T extends IdEntity> List<T> find(String queryString) throws DataAccessException {
+	public <T extends UUIDEntity> List<T> find(String queryString) throws DataAccessException {
 		return find(queryString, (Object[]) null);
 	}
 
@@ -138,7 +139,7 @@ public class BaseDao implements IBaseDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> List<T> find(String queryString, int firstResult, int maxResults)
+	public <T extends UUIDEntity> List<T> find(String queryString, int firstResult, int maxResults)
 			throws DataAccessException {
 		Query query = getSession().createQuery(queryString);
 		if (firstResult >= 0) {
@@ -164,7 +165,7 @@ public class BaseDao implements IBaseDao {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> List<T> find(String queryString, Object... values) throws DataAccessException {
+	public <T extends UUIDEntity> List<T> find(String queryString, Object... values) throws DataAccessException {
 		Query queryObject = getSession().createQuery(queryString);
 		if (values != null) {
 			for (int i = 0; i < values.length; i++) {
@@ -261,7 +262,7 @@ public class BaseDao implements IBaseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T extends IdEntity> List<T> getAll(Class<T> c) {
+	public <T extends UUIDEntity> List<T> getAll(Class<T> c) {
 		return (List<T>) find("from " + c.getName());
 	}
 

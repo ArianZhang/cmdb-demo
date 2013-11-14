@@ -9,7 +9,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.xbrother.common.dto.SuperDTO;
+import com.xbrother.common.entity.BaseEntity;
 
 /**
  * 
@@ -22,5 +22,5 @@ import com.xbrother.common.dto.SuperDTO;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Validate {
-	Class<? extends SuperDTO> classOfDTO() default SuperDTO.class;
+	Class<? extends BaseEntity> classOfDTO() default BaseEntity.class;
 }
