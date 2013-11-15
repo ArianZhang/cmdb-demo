@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -68,7 +69,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.computerRoomUid = computerRoomUid;
 	}
 
-	@Column(name="location_uid", length = 32)
+	@Column(name = "location_uid", length = 32)
 	public String getLocationUid() {
 		return locationUid;
 	}
@@ -77,7 +78,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.locationUid = locationUid;
 	}
 
-	@Column(name="type_id")
+	@Column(name = "type_id")
 	public String getTypeId() {
 		return typeId;
 	}
@@ -86,7 +87,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.typeId = typeId;
 	}
 
-	@Column(name="name")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -94,8 +95,8 @@ public class ConfigurationItem extends BaseEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	@Column(name="manufacturer_uid")
+
+	@Column(name = "manufacturer_uid")
 	public String getManufacturerUid() {
 		return manufacturerUid;
 	}
@@ -104,7 +105,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.manufacturerUid = manufacturerUid;
 	}
 
-	@Column(name="service_provider_uid")
+	@Column(name = "service_provider_uid")
 	public String getServiceProviderUid() {
 		return serviceProviderUid;
 	}
@@ -113,7 +114,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.serviceProviderUid = serviceProviderUid;
 	}
 
-	@Column(name="model_code")
+	@Column(name = "model_code")
 	public String getModelCode() {
 		return modelCode;
 	}
@@ -121,8 +122,8 @@ public class ConfigurationItem extends BaseEntity {
 	public void setModelCode(String modelCode) {
 		this.modelCode = modelCode;
 	}
-	
-	@Column(name="purpose")
+
+	@Column(name = "purpose")
 	public String getPurpose() {
 		return purpose;
 	}
@@ -130,8 +131,8 @@ public class ConfigurationItem extends BaseEntity {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
-	
-	@Column(name="series_no")
+
+	@Column(name = "series_no")
 	public String getSeriesNo() {
 		return seriesNo;
 	}
@@ -140,7 +141,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.seriesNo = seriesNo;
 	}
 
-	@OneToMany(mappedBy="ci",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "ci", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Set<ConfigurationItemAttr> getAttributes() {
 		return attributes;
 	}
@@ -149,7 +150,7 @@ public class ConfigurationItem extends BaseEntity {
 		this.attributes = attributes;
 	}
 
-	@OneToMany(mappedBy="ci",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "ci", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Set<ConfigurationItemSpot> getMonitorSpots() {
 		return monitorSpots;
 	}

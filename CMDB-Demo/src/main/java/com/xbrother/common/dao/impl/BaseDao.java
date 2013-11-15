@@ -482,6 +482,24 @@ public class BaseDao implements IBaseDao {
 		return getSession().createQuery(hql).executeUpdate();
 	}
 
+	@Override
+	public <T extends UUIDEntity> T addNew(T entity) throws DataAccessException {
+		if(entity.getUid() == null){
+			entity.setUid(GUIDUtils.generate());
+		}
+		getSession().save(entity);
+		return entity;
+	}
+
+	@Override
+	public <T extends UUIDEntity> T update(T entity) throws DataAccessException {
+		getSession().update(entity);
+		return entity;
+	}
+	
+	
+	
+
 	/*
 	 * (non-Javadoc)
 	 * 

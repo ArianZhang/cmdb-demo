@@ -16,8 +16,9 @@ public class ConfigurationItemSpotSegment extends BaseEntity {
 	private String arithmeticSign;// " : ">=",
 	private String thresholdValue;// " : "280",
 	private String incidentDesc;// " : "UPS指标{0}，达到{4}V，超过{1}，事件等级：{3}，请速处理！
-	private ConfigurationItemSpot spot;
-	@Column(name="prior_no")
+	private transient ConfigurationItemSpot spot;
+
+	@Column(name = "prior_no")
 	public Integer getPriorNo() {
 		return priorNo;
 	}
@@ -26,7 +27,7 @@ public class ConfigurationItemSpotSegment extends BaseEntity {
 		this.priorNo = priorNo;
 	}
 
-	@Column(name="arithmetic_sign")
+	@Column(name = "arithmetic_sign")
 	public String getArithmeticSign() {
 		return arithmeticSign;
 	}
@@ -34,8 +35,8 @@ public class ConfigurationItemSpotSegment extends BaseEntity {
 	public void setArithmeticSign(String arithmeticSign) {
 		this.arithmeticSign = arithmeticSign;
 	}
-	
-	@Column(name="threshold_value")
+
+	@Column(name = "threshold_value")
 	public String getThresholdValue() {
 		return thresholdValue;
 	}
@@ -44,7 +45,7 @@ public class ConfigurationItemSpotSegment extends BaseEntity {
 		this.thresholdValue = thresholdValue;
 	}
 
-	@Column(name="incident_desc")
+	@Column(name = "incident_desc")
 	public String getIncidentDesc() {
 		return incidentDesc;
 	}
@@ -52,9 +53,9 @@ public class ConfigurationItemSpotSegment extends BaseEntity {
 	public void setIncidentDesc(String incidentDesc) {
 		this.incidentDesc = incidentDesc;
 	}
-	
+
 	@ManyToOne
-	@JoinColumn(name="spot_uid")
+	@JoinColumn(name = "spot_uid")
 	public ConfigurationItemSpot getSpot() {
 		return spot;
 	}

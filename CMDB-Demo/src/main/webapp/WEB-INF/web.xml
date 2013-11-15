@@ -14,11 +14,14 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>com.xbrother.common.config</param-value>
 	</context-param>
-	<listener>
+	<!-- <listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> -->
 	<listener>
 		<listener-class>com.xbrother.common.web.listener.RequestAndSessionListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.xbrother.common.web.listener.IncrementalUpdateListener</listener-class>
 	</listener>
 	<filter>
 		<filter-name>openSessionInViewFilter</filter-name>

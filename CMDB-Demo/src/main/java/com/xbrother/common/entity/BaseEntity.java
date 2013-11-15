@@ -65,7 +65,7 @@ public class BaseEntity extends UUIDEntity implements java.io.Serializable {
 		return this.updateTime;
 	}
 
-	public void setUpdatetime(Date updatetime) {
+	public void setUpdateTime(Date updatetime) {
 		this.updateTime = updatetime;
 	}
 

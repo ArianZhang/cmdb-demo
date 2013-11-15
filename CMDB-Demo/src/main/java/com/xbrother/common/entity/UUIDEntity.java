@@ -28,7 +28,7 @@ public abstract class UUIDEntity implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "uid", unique = true, nullable = false)
+	@Column(name = "uid", length=32, unique = true, nullable = false)
 	public String getUid() {
 		return uid;
 	}

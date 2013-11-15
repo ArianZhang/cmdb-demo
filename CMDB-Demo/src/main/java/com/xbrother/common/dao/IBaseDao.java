@@ -15,10 +15,7 @@ import org.springframework.orm.hibernate3.HibernateOperations;
 
 import com.xbrother.common.entity.UUIDEntity;
 
-/**
- * @author qhcui
- * 
- */
+
 public interface IBaseDao {
 
 	/** Methods from {@link HibernateOperations} */
@@ -29,6 +26,10 @@ public interface IBaseDao {
 	<T extends UUIDEntity> List<T> loadAll(Class<T> entityClass) throws DataAccessException;
 
 	<T extends UUIDEntity> T saveOrUpdate(T entity) throws DataAccessException;
+	
+	<T extends UUIDEntity> T addNew(T entity) throws DataAccessException;
+	
+	<T extends UUIDEntity> T update(T entity) throws DataAccessException;
 
 	// <T extends UUIDEntity> T update(T entity) throws DataAccessException;
 

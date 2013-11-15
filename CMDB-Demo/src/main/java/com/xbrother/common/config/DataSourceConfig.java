@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.xbrother.common.hibernate.interceptor.DataObjectInterceptor;
 import com.xbrother.common.utils.PropertiesUtils;
 
 @Configuration
@@ -52,7 +53,7 @@ public class DataSourceConfig {
 		Properties props = new Properties();
 		props.putAll(hibernateProperties());
 		sessionFactory.setHibernateProperties(props);
-		//sessionFactory.setEntityInterceptor(new DataObjectInterceptor());
+		sessionFactory.setEntityInterceptor(new DataObjectInterceptor());
 		return sessionFactory;
 	}
 
@@ -70,7 +71,7 @@ public class DataSourceConfig {
 	// }
 
 	public String[] getPackagesToScan() {
-		return new String[] { AppConfig.BASE_PACKAGES + ".common.entity", AppConfig.BASE_PACKAGES + ".rst.entity" };
+		return new String[] { AppConfig.BASE_PACKAGES + ".common.entity", AppConfig.BASE_PACKAGES + ".cmdb.entity" };
 	}
 
 	public Map<String, String> hibernateProperties() {

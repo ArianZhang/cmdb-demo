@@ -19,7 +19,7 @@ public class ConfigurationItemAttr extends BaseEntity {
 	private String attrValue;// " : "2KVA",
 	private Integer valueType;// " : 1,
 	private Integer requried;// " : 0
-	private ConfigurationItem ci;
+	private transient ConfigurationItem ci;
 
 	@Column(name = "attr_type")
 	public Integer getAttrType() {
@@ -83,6 +83,7 @@ public class ConfigurationItemAttr extends BaseEntity {
 	public void setRequried(Integer requried) {
 		this.requried = requried;
 	}
+	
 	@ManyToOne
 	@JoinColumn(name="ci_uid")
 	public ConfigurationItem getCi() {

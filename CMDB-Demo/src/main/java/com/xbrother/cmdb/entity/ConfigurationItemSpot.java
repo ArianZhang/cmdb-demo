@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -37,9 +38,9 @@ public class ConfigurationItemSpot extends BaseEntity {
 																 * "UPS指标{0}，达到{4}V，超过{1}，事件等级：{3}，请速处理！"
 																 * }]
 																 */
-	private ConfigurationItem ci;
-	
-	@Column(unique=true)
+	private transient ConfigurationItem ci;
+
+	@Column(unique = true)
 	public Integer getId() {
 		return id;
 	}
@@ -48,7 +49,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name="name")
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
@@ -57,7 +58,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.name = name;
 	}
 
-	@Column(name="normal_value")
+	@Column(name = "normal_value")
 	public String getNormalValue() {
 		return normalValue;
 	}
@@ -66,7 +67,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.normalValue = normalValue;
 	}
 
-	@Column(name="exception_value")
+	@Column(name = "exception_value")
 	public String getExceptionValue() {
 		return exceptionValue;
 	}
@@ -75,7 +76,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.exceptionValue = exceptionValue;
 	}
 
-	@Column(name="normal_max_value")
+	@Column(name = "normal_max_value")
 	public String getNormalMaxValue() {
 		return normalMaxValue;
 	}
@@ -84,7 +85,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.normalMaxValue = normalMaxValue;
 	}
 
-	@Column(name="normal_min_value")
+	@Column(name = "normal_min_value")
 	public String getNormalMinValue() {
 		return normalMinValue;
 	}
@@ -93,7 +94,7 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.normalMinValue = normalMinValue;
 	}
 
-	@Column(name="value_type")
+	@Column(name = "value_type")
 	public Integer getValueType() {
 		return valueType;
 	}
@@ -102,17 +103,17 @@ public class ConfigurationItemSpot extends BaseEntity {
 		this.valueType = valueType;
 	}
 
-	@OneToMany(mappedBy="spot",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "spot", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public Set<ConfigurationItemSpotSegment> getThresholdSegments() {
 		return thresholdSegments;
 	}
 
-	public void setThresholdSegments(
-			Set<ConfigurationItemSpotSegment> thresholdSegments) {
+	public void setThresholdSegments(Set<ConfigurationItemSpotSegment> thresholdSegments) {
 		this.thresholdSegments = thresholdSegments;
 	}
+
 	@ManyToOne
-	@JoinColumn(name="ci_uid")
+	@JoinColumn(name = "ci_uid")
 	public ConfigurationItem getCi() {
 		return ci;
 	}
