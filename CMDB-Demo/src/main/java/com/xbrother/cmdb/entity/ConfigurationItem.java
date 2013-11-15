@@ -158,5 +158,9 @@ public class ConfigurationItem extends BaseEntity {
 	public void setMonitorSpots(Set<ConfigurationItemSpot> monitorSpots) {
 		this.monitorSpots = monitorSpots;
 	}
+	
+	public static void main(String[] args) {
+		System.out.println("7b4a187524874288806fe60fdb8ddb7a".length());
+	}
 
 }

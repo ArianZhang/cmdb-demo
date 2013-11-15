@@ -34,7 +34,7 @@ public class ConfigurationItemRsTest extends AbstractRsTest {
 		ConfigurationItem ci = new ConfigurationItem();
 		ci.setTemplateUid("1");
 		ci.setComputerRoomUid("7b4a187524874288806fe60fdb8ddb7a");
-		ci.setLocationUid("946c8f390bcc4778bd578cd08d7112aa11");
+		ci.setLocationUid("946c8f390bcc4778bd578cd08d7112aa");
 		ci.setTypeId("010101");
 		ci.setName("艾默生 UPS 200");
 		ci.setManufacturerUid("1");
@@ -90,7 +90,7 @@ public class ConfigurationItemRsTest extends AbstractRsTest {
 		LOGGER.info("response is " + response.getEntity(String.class));
 		Assert.assertEquals(200, response.getStatus());
 
-		response = resource.path("syn").accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON)
+		response = pathResource().path("syn").accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON)
 				.header(HeaderKey.LASTUPDATE, System.currentTimeMillis()).get(ClientResponse.class);
 		LOGGER.info("response is " + response.getEntity(String.class));
 		Assert.assertEquals(304, response.getStatus());

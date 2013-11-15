@@ -17,8 +17,12 @@ import org.springframework.util.StringUtils;
 
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.xbrother.cmdb.entity.ConfigurationItem;
+import com.xbrother.cmdb.entity.ConfigurationItemAttr;
+import com.xbrother.cmdb.entity.ConfigurationItemSpot;
+import com.xbrother.cmdb.entity.ConfigurationItemSpotSegment;
 import com.xbrother.common.rs.AbstractRs;
 import com.xbrother.common.service.impl.BaseService;
+import com.xbrother.common.utils.CollectionUtils;
 import com.xbrother.common.utils.JsonUtils;
 import com.xbrother.common.utils.PropertiesUtils;
 import com.xbrother.common.utils.RabbitMQUtils;
@@ -73,9 +77,11 @@ public class ConfigurationItemRs extends AbstractRs {
 	public Response register(@HeaderParam("actionType") Integer actionType, @HeaderParam("uid") String uid, ConfigurationItem ci) {
 		switch (actionType) {
 		case 1:
+			initialCIRelation(ci);
 			ci = baseService.addNew(ci);
 			break;
 		case 2:
+			initialCIRelation(ci);
 			ci = baseService.update(ci);
 			break;
 		case 3:
@@ -93,6 +99,24 @@ public class ConfigurationItemRs extends AbstractRs {
 		headers.put("lastUpdate", ci.getUpdateTime().getTime());
 		sendTopic(headers, JsonUtils.toJson(ci));
 		return ok();
+	}
+
+	public static void initialCIRelation(ConfigurationItem ci) {
+		if (!CollectionUtils.isEmpty(ci.getAttributes())) {
+			for (ConfigurationItemAttr attr : ci.getAttributes()) {
+				attr.setCi(ci);
+			}
+		}
+		if (!CollectionUtils.isEmpty(ci.getMonitorSpots())) {
+			for (ConfigurationItemSpot spot : ci.getMonitorSpots()) {
+				spot.setCi(ci);
+				if (!CollectionUtils.isEmpty(spot.getThresholdSegments())) {
+					for (ConfigurationItemSpotSegment segment : spot.getThresholdSegments()) {
+						segment.setSpot(spot);
+					}
+				}
+			}
+		}
 	}
 
 	/**

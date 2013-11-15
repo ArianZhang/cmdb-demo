@@ -40,7 +40,7 @@ public class DataObjectInterceptor extends EmptyInterceptor {
 				state[i] = new Date();
 				baseEntity.setCreateTime((Date) state[i]);
 				LOGGER.debug("set createTime onSave");
-			} else if (propertyName.equals("createby")) {
+			} else if (propertyName.equals("creator")) {
 				state[i] = "1";
 				baseEntity.setCreator("1");
 				LOGGER.debug("set createby onSave");
@@ -48,9 +48,9 @@ public class DataObjectInterceptor extends EmptyInterceptor {
 				state[i] = new Date();
 				baseEntity.setUpdateTime((Date) state[i]);
 				LOGGER.debug("set updateTime onSave");
-			} else if (propertyName.equals("updateby")) {
+			} else if (propertyName.equals("updator")) {
 				state[i] = "1";
-				baseEntity.setCreator("1");
+				baseEntity.setUpdator("1");
 				LOGGER.debug("set updateby onSave");
 			} else if (propertyName.equals("rowStatus")) {
 				state[i] = RowStatus.valid.value;
@@ -74,7 +74,7 @@ public class DataObjectInterceptor extends EmptyInterceptor {
 				currentState[i] = new Date();
 				baseEntity.setUpdateTime((Date) currentState[i]);
 				LOGGER.debug("set updateTime onFlushDirty");
-			} else if (propertyName.equals("updateby")) {
+			} else if (propertyName.equals("updator")) {
 				currentState[i] = "1";
 				baseEntity.setCreator("1");
 				LOGGER.debug("set updateby onFlushDirty");

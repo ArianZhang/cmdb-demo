@@ -24,6 +24,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.xbrother.common.dao.IBaseDao;
+import com.xbrother.common.dao.utils.UUIDSetterUtils;
 import com.xbrother.common.entity.UUIDEntity;
 import com.xbrother.common.utils.GUIDUtils;
 import com.xbrother.common.utils.ReflectUtils;
@@ -62,10 +63,13 @@ public class BaseDao implements IBaseDao {
 	@Override
 	public <T extends UUIDEntity> T saveOrUpdate(T entity) throws DataAccessException {
 		if(entity.getUid() == null){
-			entity.setUid(GUIDUtils.generate());
+			UUIDSetterUtils.generateUUIDAndSet(entity);
 			getSession().save(entity);
 		}else{
 			T originEntity = (T) getSession().get(entity.getClass(), entity.getUid());
+			if(originEntity == null){
+				getSession().save(entity);
+			}
 			ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
 			getSession().update(originEntity);
 		}

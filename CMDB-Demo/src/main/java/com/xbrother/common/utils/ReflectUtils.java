@@ -95,7 +95,6 @@ public class ReflectUtils {
 			Collections.addAll(list, getAllFields(clazz.getSuperclass()));
 			return list.toArray(array); 
 		}
-
 	}
 	
 }
