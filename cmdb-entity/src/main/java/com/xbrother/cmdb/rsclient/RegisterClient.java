@@ -11,6 +11,7 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.xbrother.cmdb.entity.ConfigurationItem;
 import com.xbrother.common.utils.JsonUtils;
 
@@ -23,6 +24,13 @@ public class RegisterClient {
 	protected Client client;
 	protected WebResource resource;
 	protected Cookie cookie;
+	
+	public RegisterClient(){
+		clientConfig = new DefaultClientConfig();
+		client = Client.create(clientConfig);
+		client.setFollowRedirects(true);
+		resource = client.resource(URL);
+	}
 
 	public ClientResponse registerCI(ConfigurationItem ci, Integer actionType) {
 		ClientResponse response = resource.path("/basicdatamgt/ci/register").accept(MediaType.APPLICATION_JSON)

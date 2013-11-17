@@ -23,6 +23,7 @@ import com.xbrother.cmdb.entity.ConfigurationItemSpot;
 import com.xbrother.cmdb.entity.ConfigurationItemSpotSegment;
 import com.xbrother.cmdb.entity.utils.EntityRelationUtils;
 import com.xbrother.cmdb.rsclient.RegisterClient;
+import com.xbrother.common.dao.utils.UUIDSetterUtils;
 import com.xbrother.common.rs.AbstractRs;
 import com.xbrother.common.service.impl.BaseService;
 import com.xbrother.common.utils.CollectionUtils;
@@ -68,6 +69,7 @@ public class ConfigurationItemRs extends AbstractRs {
 	public Response saveOrUpdate(ConfigurationItem ci) {
 		int actionType = StringUtils.isEmpty(ci.getUid()) ? 1 : 2;
 		EntityRelationUtils.initialCIRelation(ci);
+		UUIDSetterUtils.generateUUIDAndSet(ci);
 		ClientResponse response = registerClient.registerCI(ci, actionType);
 		if (response.getStatus() == 200) {
 			ci = baseService.saveOrUpdate(ci);
