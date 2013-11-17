@@ -14,12 +14,16 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.xbrother.cmdb.entity.ConfigurationItem;
 import com.xbrother.common.utils.JsonUtils;
+import com.xbrother.common.utils.PropertiesUtils;
 
 @Component
 public class RegisterClient {
 	private static Logger LOGGER = LoggerFactory.getLogger(IncrementalUpdateTask.class);
 
 	protected String URL = "http://localhost:8080/cmdb-web/rest";
+	{
+		URL = PropertiesUtils.getProperties("/config.properties").getProperty("cmdb-web-address");
+	}
 	protected ClientConfig clientConfig;
 	protected Client client;
 	protected WebResource resource;

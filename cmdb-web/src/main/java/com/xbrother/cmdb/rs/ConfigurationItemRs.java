@@ -74,7 +74,8 @@ public class ConfigurationItemRs extends AbstractRs {
 	 */
 	@POST
 	@Path("register")
-	public Response register(@HeaderParam("actionType") Integer actionType, @HeaderParam("uid") String uid, ConfigurationItem ci) {
+	public Response register(@HeaderParam("actionType") Integer actionType, @HeaderParam("uid") String uid, 
+			ConfigurationItem ci) {
 		switch (actionType) {
 		case 1:
 			initialCIRelation(ci);

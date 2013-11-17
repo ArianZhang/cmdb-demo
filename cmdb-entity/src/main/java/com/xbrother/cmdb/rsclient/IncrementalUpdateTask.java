@@ -26,12 +26,16 @@ import com.xbrother.common.service.IBaseService;
 import com.xbrother.common.utils.CollectionUtils;
 import com.xbrother.common.utils.GUIDUtils;
 import com.xbrother.common.utils.JsonUtils;
+import com.xbrother.common.utils.PropertiesUtils;
 
 @Component
 public class IncrementalUpdateTask implements Runnable {
 	private static Logger LOGGER = LoggerFactory.getLogger(IncrementalUpdateTask.class);
 
 	protected String URL = "http://localhost:8080/cmdb-web/rest";
+	{
+		URL = PropertiesUtils.getProperties("/config.properties").getProperty("cmdb-web-address");
+	}
 	protected ClientConfig clientConfig;
 	protected Client client;
 	protected WebResource resource;

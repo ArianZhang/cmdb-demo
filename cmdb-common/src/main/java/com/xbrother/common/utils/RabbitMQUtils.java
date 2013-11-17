@@ -12,7 +12,8 @@ public class RabbitMQUtils {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(RabbitMQUtils.class);
 
-	public static void sendTopic(String hostName, String exchangeName, String routerKey, BasicProperties properties, String message) {
+	public static void sendTopic(String hostName, String exchangeName, String routerKey, 
+			BasicProperties properties, String message) {
 		Connection connection = null;
 		Channel channel = null;
 		try {
