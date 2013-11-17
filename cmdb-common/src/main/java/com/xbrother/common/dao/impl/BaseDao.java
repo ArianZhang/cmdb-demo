@@ -69,9 +69,10 @@ public class BaseDao implements IBaseDao {
 			T originEntity = (T) getSession().get(entity.getClass(), entity.getUid());
 			if(originEntity == null){
 				getSession().save(entity);
+			}else{
+				ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
+				getSession().update(originEntity);
 			}
-			ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
-			getSession().update(originEntity);
 		}
 		return entity;
 	}

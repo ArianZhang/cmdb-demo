@@ -3,6 +3,7 @@ package com.xbrother.cmdb.rs;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.ws.rs.core.MediaType;
 
@@ -87,11 +88,13 @@ public class ConfigurationItemRsTest extends AbstractRsTest {
 	}
 
 	@Test
-	public void testSyn() {
+	public void testSyn() throws InterruptedException {
 		ClientResponse response = pathResource().path("syn").accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 		LOGGER.info("response is " + JsonUtils.toJson(JsonUtils.fromJson(response.getEntity(String.class),new TypeToken<List<ConfigurationItem>>(){}.getType())));
 		
 		Assert.assertEquals(200, response.getStatus());
+		
+		TimeUnit.SECONDS.sleep(1);
 		
 		response = pathResource().path("syn").accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON)
 				.header(HeaderKey.LASTUPDATE, System.currentTimeMillis()).get(ClientResponse.class);
