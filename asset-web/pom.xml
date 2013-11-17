@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.xbrother</groupId>
-	<artifactId>assert-web</artifactId>
+	<artifactId>asset-web</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>assert-web Maven Webapp</name>
@@ -343,7 +343,7 @@
 			<version>1.2</version> </dependency> -->
 	</dependencies>
 	<build>
-		<finalName>assert-web</finalName>
+		<finalName>asset-web</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

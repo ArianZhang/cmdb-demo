@@ -22,7 +22,7 @@ public class RegisterClient {
 
 	protected String URL = "http://localhost:8080/cmdb-web/rest";
 	{
-		URL = PropertiesUtils.getProperties("/config.properties").getProperty("cmdb-web-address");
+		URL = PropertiesUtils.getProperties("/config.properties").getProperty("cmdb-web-address","http://localhost:8080/cmdb-web/rest");
 	}
 	protected ClientConfig clientConfig;
 	protected Client client;
