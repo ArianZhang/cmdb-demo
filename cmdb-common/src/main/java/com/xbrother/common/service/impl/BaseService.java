@@ -60,4 +60,9 @@ public class BaseService implements IBaseService {
 		return baseDao.find(sql);
 	}
 
+	@Override
+	public <T extends UUIDEntity> T find(String uid, Class<T> entityClass) {
+		return baseDao.load(entityClass, uid);
+	}
+
 }

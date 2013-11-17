@@ -16,11 +16,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import com.rabbitmq.client.AMQP.BasicProperties;
+import com.sun.jersey.api.client.ClientResponse;
 import com.xbrother.cmdb.entity.ConfigurationItem;
 import com.xbrother.cmdb.entity.ConfigurationItemAttr;
 import com.xbrother.cmdb.entity.ConfigurationItemSpot;
 import com.xbrother.cmdb.entity.ConfigurationItemSpotSegment;
 import com.xbrother.cmdb.entity.utils.EntityRelationUtils;
+import com.xbrother.cmdb.rsclient.RegisterClient;
+import com.xbrother.common.dao.utils.UUIDSetterUtils;
 import com.xbrother.common.rs.AbstractRs;
 import com.xbrother.common.service.impl.BaseService;
 import com.xbrother.common.utils.CollectionUtils;
@@ -53,7 +56,8 @@ public class ConfigurationItemRs extends AbstractRs {
 	@Autowired
 	BaseService baseService;
 
-	
+	@Autowired
+	RegisterClient registerClient;
 
 	/**
 	 * 用于处理WEBUI发起CI保存操作接口
@@ -65,25 +69,13 @@ public class ConfigurationItemRs extends AbstractRs {
 	public Response saveOrUpdate(ConfigurationItem ci) {
 		int actionType = StringUtils.isEmpty(ci.getUid()) ? 1 : 2;
 		EntityRelationUtils.initialCIRelation(ci);
-		ci = baseService.saveOrUpdate(ci);
-		// build message header and send the news.
-		Map<String, Object> headers = new HashMap<String, Object>();
-		headers.put("actionType", actionType);
-		headers.put("uid", ci.getUid());
-		headers.put("lastUpdate", ci.getUpdateTime().getTime());
-		sendTopic(headers, JsonUtils.toJson(ci));
-		return ok();
-	}
-
-	/**
-	 * 用户发送CI更新消息
-	 * 
-	 * @param headers
-	 * @param jsonMessage
-	 */
-	private void sendTopic(Map<String, Object> headers, String jsonMessage) {
-		BasicProperties properties = new BasicProperties.Builder().contentType(MediaType.APPLICATION_JSON).contentEncoding("UTF-8").headers(headers).build();
-		// send topic message.
-		RabbitMQUtils.sendTopic(mqHostName, exchangeName, routerKey, properties, jsonMessage);
+		UUIDSetterUtils.generateUUIDAndSet(ci);
+		ClientResponse response = registerClient.registerCI(ci, actionType);
+		if (response.getStatus() == 200) {
+			ci = baseService.saveOrUpdate(ci);
+			return ok();
+		} else {
+			return createResult(response.getStatus(), response.getEntity(String.class));
+		}
 	}
 }

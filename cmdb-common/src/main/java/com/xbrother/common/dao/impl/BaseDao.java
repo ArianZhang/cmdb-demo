@@ -29,10 +29,6 @@ import com.xbrother.common.entity.UUIDEntity;
 import com.xbrother.common.utils.GUIDUtils;
 import com.xbrother.common.utils.ReflectUtils;
 
-/**
- * @author Jonah.Cui
- * @date 2013-7-22
- */
 @Repository("baseDao")
 public class BaseDao implements IBaseDao {
 
@@ -69,9 +65,11 @@ public class BaseDao implements IBaseDao {
 			T originEntity = (T) getSession().get(entity.getClass(), entity.getUid());
 			if(originEntity == null){
 				getSession().save(entity);
+			}else{
+				ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
+//				getSession().update(originEntity);
+				getSession().merge(originEntity);
 			}
-			ReflectUtils.setObjectFieldValuesBySelective(originEntity, entity);
-			getSession().update(originEntity);
 		}
 		return entity;
 	}

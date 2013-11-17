@@ -93,14 +93,13 @@ public class SubscribeCIsTopic implements Runnable {
 						}
 						switch (actionType) {
 						case 1:
-							ci = JsonUtils.fromJson(message, ConfigurationItem.class);
-							EntityRelationUtils.initialCIRelation(ci);
-							baseService.addNew(ci);
-							break;
+							if(baseService.find(uid, ConfigurationItem.class) != null){
+								break;
+							}
 						case 2:
 							ci = JsonUtils.fromJson(message, ConfigurationItem.class);
 							EntityRelationUtils.initialCIRelation(ci);
-							baseService.update(ci);
+							baseService.saveOrUpdate(ci);
 						case 3:
 							ci = new ConfigurationItem();
 							ci.setUid(uid);

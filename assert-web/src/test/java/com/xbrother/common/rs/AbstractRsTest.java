@@ -39,7 +39,7 @@ import com.xbrother.common.utils.JsonUtils;
 public abstract class AbstractRsTest {
 	private static Logger LOGGER = LoggerFactory.getLogger(AbstractRsTest.class);
 
-	protected static String URL = "http://localhost:8080/assert-web/rest";
+	protected static String URL = "http://localhost:8088/assert-web/rest";
 	protected static ClientConfig clientConfig;
 	protected static Client client;
 	protected static WebResource resource;

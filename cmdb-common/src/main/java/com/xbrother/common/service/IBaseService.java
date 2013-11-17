@@ -17,6 +17,16 @@ import com.xbrother.common.query.Condition;
  * @version 1.0
  */
 public interface IBaseService {
+	
+	/**
+	 * 根据主键获取对应的Entity对象
+	 * @date 2013-11-17
+	 * @param uid
+	 * @param entityClass
+	 * @return
+	 */
+	<T extends UUIDEntity> T find(String uid,Class<T> entityClass);
+	
 	/**
 	 * 用于增量下载
 	 * @param lastUpdate
